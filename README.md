@@ -76,6 +76,7 @@ most significant bit in OPL3 register `0x105`:
     out(base + 2, 0x05);
     delay();
     out(base + 3, 0x80);
+    delay();
 ```
 
 If ESFM mode is already active, this only writes the index ports, so this
