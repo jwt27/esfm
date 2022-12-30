@@ -75,10 +75,11 @@ most significant bit in OPL3 register `0x105`:
 ```c
     out(base + 2, 0x05);
     delay();
-    out(base + 1, 0x80);
+    out(base + 3, 0x80);
 ```
 
-Any write to the `base` port then returns to OPL3 mode.
+If ESFM mode is already active, this only writes the index ports, so this
+sequence has no effect.
 
 ## Registers
 
