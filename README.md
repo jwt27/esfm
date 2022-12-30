@@ -129,7 +129,7 @@ as feedback, to produce a true 2-op mode.
 This register is the same as on OPL3.
 
 Bits 0-3 (`MULT`) set the frequency multiplier.  Same as OPL3, with values 0,
-11, 13 and 14 mapping to 1/2×, 10×. 12× and 15×, respectively.
+11, 13 and 14 mapping to ½×, 10×. 12× and 15×, respectively.
 
 Bit 4 (`KSR`) scales the envelope rate by pitch.  It is not known whether ESFM
 has an `NTS` bit to configure how this scaling is calculated.
