@@ -54,7 +54,7 @@ necessary.
 
 ```c
     out(base + 2, index & 0xff);
-    out(base + 3, index << 8);
+    out(base + 3, index >> 8);
     delay();
     out(base + 1, data);
     delay();
