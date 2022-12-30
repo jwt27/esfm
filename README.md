@@ -35,13 +35,13 @@ You know you want to use it now...  Let's figure out how!
 
 The following 8-bit I/O ports are used in ESFM mode:
 
-|     Port     | R/W | Description
-| ------------:|:---:|:-----------
-| ``base + 0`` |  R  | Status?
-| ``base + 0`` |  W  | Reset
-| ``base + 1`` |  W  | Data
-| ``base + 2`` |  W  | Index low
-| ``base + 3`` |  W  | Index high
+|     Port   | R/W | Description
+| ----------:|:---:|:-----------
+| `base + 0` |  R  | Status?
+| `base + 0` |  W  | Reset
+| `base + 1` |  W  | Data
+| `base + 2` |  W  | Index low
+| `base + 3` |  W  | Index high
 
 Where `base` is either `0x388` (Adlib base), or `0x220`, `0x240`, etc (SB base).
 
