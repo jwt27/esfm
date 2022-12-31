@@ -214,11 +214,17 @@ Bit 7 (`TRMD`) determines amplitude LFO depth.
 
 Bits 0-2 (`WAVE`) select the waveform, same as on OPL3.
 
-Bits 3-4 (`NOISE`) affect the sound significantly, but I do not yet know
-exactly what type of modulation these enable.  These bits only have any effect
-on the last operator (3) in a channel.  When bit 4 is set, the frequency
-setting of operator 2 also affects the sound produced by operator 3, even when
-operator 2 itself has no envelope set.
+Bits 3-4 (`NOISE`) appear to be used for percussion-mode sounds.  These bits
+only have any effect on the 4th operator in a channel.  When bit 4 is set, the
+frequency setting of the 3rd operator also affects sound produced by the 4th,
+even when the 3rd operator itself has no envelope set.
+
+| `NOISE` | Sound type
+| -------:|:----------
+|       0 | Normal
+|       1 | Snare drum?
+|       2 | Top cymbal?
+|       3 | Hihat?
 
 Bits 5-7 (`OUT`) set the direct speaker output level for this operator.  How
 this value corresponds with decibel levels is currently unknown.
