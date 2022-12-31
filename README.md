@@ -185,7 +185,7 @@ Bits 5-7 (`DELAY`), when non-zero, add a delay of `2**(8 + n)` samples to the
 envelope generator.
 
 | `DELAY` | Samples | Milliseconds
-|--------:|--------:|-------------:
+| -------:| -------:| ------------:
 |       0 |       0 |          0.0
 |       1 |     512 |         10.3
 |       2 |    1024 |         20.6
