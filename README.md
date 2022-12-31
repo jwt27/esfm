@@ -63,10 +63,6 @@ necessary.
 Any write to the "reset" port returns to OPL3-compatible mode - it does not
 appear to clear any registers, or stop sound output.
 
-### Detection
-
-TODO
-
 ### Initialization
 
 With the chip in OPL2 or OPL3 mode, native ESFM mode is enabled by setting the
