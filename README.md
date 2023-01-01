@@ -81,7 +81,7 @@ sequence has no effect.
 ## Registers
 
 The total address space is 11 bits - valid indices are `0x000` to `0x7ff`.
-Currently, only registers `0x000` to `0x253` have a known purpose.
+Currently, only registers `0x000`-`0x253` and `0x501` have a known purpose.
 
 Each operator is composed of a block of 8 registers.  These are all ordered
 sequentially, from `0x000` to `0x23f`.  The index for any given operator
@@ -96,6 +96,8 @@ The key-on bits for each channel are in separate registers, from `0x240` to
 generators for each pair of operators can be triggered individually.  It is not
 known if it is possible to configure the modulation level on the third operator
 as feedback, to produce a true 2-op mode.
+
+Register `0x501` is believed to be a test register.
 
 ### Operator registers
 
@@ -241,3 +243,13 @@ this value corresponds with decibel levels is currently unknown.
 
 On each of these registers, the first bit enables the envelope generator for
 the associated channel.  The purpose of the other bits is currently unknown.
+
+### Test register `0x501`
+
+Bit 1 produces a severely distorted sound.
+
+Bit 4 reduces the output level by about -3dB.
+
+Bit 6 disables sound output.
+
+Setting bits 1 and 6 together produces a loud popping noise.
