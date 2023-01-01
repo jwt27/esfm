@@ -261,8 +261,10 @@ the associated channel.  The purpose of the other bits is currently unknown.
 
 #### Configuration register `0x408`
 
-Bit 6 (`NTS`) in this register appears to change the envelope duration.  It is
-very likely that this bit performs the same function as the `NTS` bit in OPL3.
+Bit 6 (`NTS`) determines how envelope rate scaling is calculated.  When set,
+`FNUM` bit 9 is used.  When clear, `FNUM` bit 8 is used.
+Note: this matches the description in the OPL3 datasheet, but is *inverted*
+from how it is actually implemented on the OPL3.
 
 ### Test registers
 
