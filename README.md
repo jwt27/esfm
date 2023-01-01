@@ -249,7 +249,7 @@ this value corresponds with decibel levels is currently unknown.
 On each of these registers, the first bit enables the envelope generator for
 the associated channel.  The purpose of the other bits is currently unknown.
 
-## Test registers
+### Test registers
 
 ```
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
@@ -259,7 +259,7 @@ the associated channel.  The purpose of the other bits is currently unknown.
     ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
 ```
 
-### Test register `0x501`
+#### Test register `0x501`
 
 Bit 1 produces a severely distorted sound.
 
