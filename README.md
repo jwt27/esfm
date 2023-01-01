@@ -87,6 +87,7 @@ Currently, the following registers have been discovered:
 |:---------------:|:----------------------
 | `0x000`-`0x23f` | Operator registers
 | `0x240`-`0x253` | Key-on registers
+|     `0x408`     | Configuration register
 |     `0x501`     | Test register
 
 
@@ -135,8 +136,7 @@ This register is the same as on OPL3.
 Bits 0-3 (`MULT`) set the frequency multiplier.  Same as OPL3, with values 0,
 11, 13 and 14 mapping to ½×, 10×. 12× and 15×, respectively.
 
-Bit 4 (`KSR`) scales the envelope rate by pitch.  It is not known whether ESFM
-has an `NTS` bit to configure how this scaling is calculated.
+Bit 4 (`KSR`) scales the envelope rate by pitch.
 
 Bit 5 (`EGT`) determines the envelope generator type.  When set, the envelope
 generator pauses after the decay stage until key-off.
@@ -248,6 +248,21 @@ this value corresponds with decibel levels is currently unknown.
 
 On each of these registers, the first bit enables the envelope generator for
 the associated channel.  The purpose of the other bits is currently unknown.
+
+### Configuration registers
+
+```
+    ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
+    ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
+    ╠═══════╬═══════╪═══════╪═══════╧═══════╧═══════╧═══════╧═══════╧═══════╣
+    ║ 0x408 ║   ?   │  NTS  │                       ?                       ║
+    ╚═══════╩═══════╧═══════╧═══════════════════════════════════════════════╝
+```
+
+#### Configuration register `0x408`
+
+Bit 6 (`NTS`) in this register appears to change the envelope duration.  It is
+very likely that this bit performs the same function as the `NTS` bit in OPL3.
 
 ### Test registers
 
