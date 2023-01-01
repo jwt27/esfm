@@ -1,7 +1,7 @@
 # ESFM Demystified
 
-This projects aims to reverse-engineer and document the features and register
-map of ESFM, the proprietary FM synthesizer found on ESS AudioDrive sound cards.
+This projects aims to reverse-engineer and document the register map of ESFM,
+the proprietary FM synthesizer found on ESS AudioDrive sound cards.
 
 ESFM is often considered a "clone" of the once-ubiquitous and well-documented
 Yamaha OPL3 (YMF262).  Many such clones exist, and all produce far inferior
@@ -87,7 +87,7 @@ Each operator is composed of a block of 8 registers.  These are all ordered
 sequentially, from `0x000` to `0x23f`.  The index for any given operator
 register is calculated as follows:
 
-```c
+```
     index = 32 * channel + 8 * operator + register
 ```
 
