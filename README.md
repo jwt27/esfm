@@ -212,8 +212,8 @@ which is calculated as:
     f = MULT * FNUM * 2**(BLOCK - 20) * 49716
 ```
 
-Bits 5-7 (`DELAY`), when non-zero, add a delay of `2**(8 + n)` samples to the
-envelope generator.
+Bits 5-7 (`DELAY`), when non-zero, add a delay of `2**(DELAY + 8)` samples to
+both the envelope and phase generators.
 
 | `DELAY` | Samples | Milliseconds
 | -------:| -------:| ------------:
