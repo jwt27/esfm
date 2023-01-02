@@ -303,9 +303,11 @@ Bit 0 (`ST1`) starts timer 1, with a 80μs tick interval.
 
 Bit 1 (`ST2`) starts timer 2, with a 320μs tick interval.
 
-Bit 5 (`MT2`) prevents a timer 2 overflow from setting `IRQ` in the status port.
+Bit 5 (`MT2`) masks the timer output so that `FT2` does not trigger `IRQ` in
+the status port.
 
-Bit 6 (`MT1`) prevents a timer 1 overflow from setting `IRQ` in the status port.
+Bit 6 (`MT1`) masks the timer output so that `FT1` does not trigger `IRQ` in
+the status port.
 
 Bit 7 (`RST`) resets all timer flags in the status port.
 
