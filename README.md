@@ -290,11 +290,11 @@ the status port on overflow.
 
 #### Timer register `0x402`
 
-This register sets the initial counter for timer 1.
+Bits 0-7 (`TIMER1`) set the initial count for timer 1.
 
 #### Timer register `0x403`
 
-This register sets the initial counter for timer 2.
+Bits 0-7 (`TIMER2`) set the initial count for timer 2.
 
 #### Timer register `0x404`
 
