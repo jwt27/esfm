@@ -270,8 +270,8 @@ this value corresponds with decibel levels is currently unknown.
     ╚═══════╩═══════════════════════════════════════════════╧═══════╧═══════╝
 ```
 
-On each of these registers, the bit 0 (`KEY`) enables the envelope generator
-for the associated channel.  Bit 1 does stick, but its purpose is unknown.
+On each of these registers, bit 0 (`KEY`) enables the envelope generator for
+the associated channel.  Bit 1 does stick, but its purpose is unknown.
 
 ### Timer registers
 
