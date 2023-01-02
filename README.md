@@ -265,14 +265,13 @@ this value corresponds with decibel levels is currently unknown.
 ```
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
     ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
-    ╠═══════╬═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╪═══════╣
-    ║   0   ║                           ?                           │  KEY  ║
-    ╚═══════╩═══════════════════════════════════════════════════════╧═══════╝
+    ╠═══════╬═══════╧═══════╧═══════╧═══════╧═══════╧═══════╪═══════╪═══════╣
+    ║   0   ║                       ?                       │   ?   │  KEY  ║
+    ╚═══════╩═══════════════════════════════════════════════╧═══════╧═══════╝
 ```
 
-On each of these registers, the first bit (`KEY`) enables the envelope
-generator for the associated channel.  The other bits do not appear to have any
-purpose.
+On each of these registers, the bit 0 (`KEY`) enables the envelope generator
+for the associated channel.  Bit 1 does stick, but its purpose is unknown.
 
 ### Timer registers
 
