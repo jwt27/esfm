@@ -235,7 +235,7 @@ before it.  On the first operator of each channel, this field sets the feedback
 level.
 
 Bits 4 and 5 (`L`/`R`) enable output to the left and right speaker channels,
-respectively.
+respectively.  Both these bits are set on power-on.
 
 Bit 6 (`VIBD`) determines pitch LFO depth.
 
