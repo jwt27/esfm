@@ -39,7 +39,7 @@ The following 8-bit I/O ports are used in ESFM mode:
 | ----------:|:---:|:-----------
 | `base + 0` |  R  | Status
 | `base + 0` |  W  | Reset
-| `base + 1` |  W  | Data
+| `base + 1` | R/W | Data
 | `base + 2` |  W  | Index low
 | `base + 3` |  W  | Index high
 
@@ -59,6 +59,9 @@ necessary.
     out(base + 1, data);
     delay();
 ```
+
+Similar to the YMF71x chips, it is possible to read back registers values from
+the data port.
 
 Any write to the "reset" port returns to OPL3-compatible mode - it does not
 appear to clear any registers, or stop sound output.
@@ -309,7 +312,8 @@ the status port.
 Bit 6 (`MT1`) masks the timer output so that `FT1` does not trigger `IRQ` in
 the status port.
 
-Bit 7 (`RST`) resets all timer flags in the status port.
+Bit 7 (`RST`) resets all timer flags in the status port.  This bit does not
+stick.
 
 ### Configuration registers
 
