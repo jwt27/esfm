@@ -37,7 +37,7 @@ The following 8-bit I/O ports are used in ESFM mode:
 
 |     Port   | R/W | Description
 | ----------:|:---:|:-----------
-| `base + 0` |  R  | Status?
+| `base + 0` |  R  | Status
 | `base + 0` |  W  | Reset
 | `base + 1` |  W  | Data
 | `base + 2` |  W  | Index low
@@ -63,6 +63,25 @@ necessary.
 Any write to the "reset" port returns to OPL3-compatible mode - it does not
 appear to clear any registers, or stop sound output.
 
+### Status port
+
+```
+    ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
+    ║ P↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
+    ╠═══════╬═══════╪═══════╪═══════╪═══════╧═══════╧═══════╧═══════╧═══════╣
+    ║ base  ║  IRQ  │  FT1  │  FT2  │                   ?                   ║
+    ╚═══════╩═══════╧═══════╧═══════╧═══════════════════════════════════════╝
+```
+
+The status port layout appears to be the same as in OPL3 mode.
+
+Bit 5 (`FT2`) is set when timer 2 overflows.
+
+Bit 6 (`FT1`) is set when timer 1 overflows.
+
+Bit 7 (`IRQ`) is set when either of the timers overflow, and their respective
+mask bits are not set.  This bit is not connected to any IRQ line.
+
 ### Initialization
 
 With the chip in OPL2 or OPL3 mode, native ESFM mode is enabled by setting the
@@ -87,6 +106,7 @@ Currently, the following registers have been discovered:
 |:---------------:|:----------------------
 | `0x000`-`0x23f` | Operator registers
 | `0x240`-`0x253` | Key-on registers
+| `0x402`-`0x404` | Timer registers
 |     `0x408`     | Configuration register
 |     `0x501`     | Test register
 
@@ -100,10 +120,10 @@ register is calculated as follows:
 ```
 
 The key-on bits for each channel are in separate registers, from `0x240` to
-`0x253`.  The last two channels use two key-on bits each, so that the envelope
-generators for each pair of operators can be triggered individually.  It is not
-known if it is possible to configure the modulation level on the third operator
-as feedback, to produce a true 2-op mode.
+`0x253`.  The last two channels use two key-on registers each, so that the
+envelope generators for each pair of operators can be triggered individually.
+It is not known if it is possible to configure the modulation level on the
+third operator as feedback, to produce a true 2-op mode.
 
 ### Operator registers
 
@@ -246,8 +266,47 @@ this value corresponds with decibel levels is currently unknown.
     ╚═══════╩═══════════════════════════════════════════════════════╧═══════╝
 ```
 
-On each of these registers, the first bit enables the envelope generator for
-the associated channel.  The purpose of the other bits is currently unknown.
+On each of these registers, the first bit (`KEY`) enables the envelope
+generator for the associated channel.  The other bits do not appear to have any
+purpose.
+
+### Timer registers
+
+```
+    ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
+    ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
+    ╠═══════╬═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╧═══════╣
+    ║ 0x402 ║                             TIMER1                            ║
+    ╟───────╫───────────────────────────────────────────────────────────────╢
+    ║ 0x403 ║                             TIMER2                            ║
+    ╟───────╫───────┬───────┬───────┬───────────────────────┬───────┬───────╢
+    ║ 0x404 ║  RST  │  MT1  │  MT2  │           ?           │  ST2  │  ST1  ║
+    ╚═══════╩═══════╧═══════╧═══════╧═══════════════════════╧═══════╧═══════╝
+```
+
+These registers are the same as `0x02`-`0x04` in the OPL3.  Both timers count
+up from their programmed initial counts and set their corresponding flags in
+the status port on overflow.
+
+#### Timer register `0x402`
+
+This register sets the initial counter for timer 1.
+
+#### Timer register `0x403`
+
+This register sets the initial counter for timer 2.
+
+#### Timer register `0x404`
+
+Bit 0 (`ST1`) starts timer 1, with a 80μs tick interval.
+
+Bit 1 (`ST2`) starts timer 2, with a 320μs tick interval.
+
+Bit 5 (`MT2`) prevents a timer 2 overflow from setting `IRQ` in the status port.
+
+Bit 6 (`MT1`) prevents a timer 1 overflow from setting `IRQ` in the status port.
+
+Bit 7 (`RST`) resets all timer flags in the status port.
 
 ### Configuration registers
 
