@@ -151,7 +151,7 @@ third operator as feedback, to produce a true 2-op mode.
 
 #### Operator register 0
 
-This register is the same as on OPL3.
+This register is the same as `0x20`-`0x35` on OPL3.
 
 Bits 0-3 (`MULT`) set the frequency multiplier.  Same as OPL3, with values 0,
 11, 13 and 14 mapping to ½×, 10×. 12× and 15×, respectively.
@@ -167,7 +167,7 @@ Bit 7 (`TRM`) enables tremolo (amplitude LFO).
 
 #### Operator register 1
 
-This register is the same as OPL3.
+This register is the same as `0x40`-`0x55` on OPL3.
 
 Bits 0-5 (`ATTENUATION`) set the output level (inverted).
 
@@ -176,7 +176,7 @@ reversed.
 
 #### Operator register 2
 
-This register is the same as OPL3.
+This register is the same as `0x60`-`0x75` on OPL3.
 
 Bits 0-3 (`DECAY`) set the envelope decay rate.
 
@@ -184,7 +184,7 @@ Bits 4-7 (`ATTACK`) set the envelope attack rate.
 
 #### Operator register 3
 
-This register is the same as OPL3.
+This register is the same as `0x80`-`0x95` on OPL3.
 
 Bits 0-3 (`RELEASE`) set the envelope release rate.
 
@@ -192,7 +192,8 @@ Bits 4-7 (`SUSTAIN`) set the envelope sustain level (inverted).
 
 #### Operator register 4
 
-On the OPL3, this is a per-channel register, instead of per-operator.
+On the OPL3, this is a per-channel register in `0xa0`-`0xa8`, instead of
+per-operator.
 
 Bits 0-7 (`FNUM 0-7`) are the low 8 bits of the frequency number.
 
