@@ -60,7 +60,7 @@ necessary.
     delay();
 ```
 
-Similar to the YMF71x chips, it is possible to read back registers values from
+Similar to the YMF71x chips, it is possible to read back register values from
 the data port.
 
 Any write to the "reset" port returns to OPL3-compatible mode - it does not
