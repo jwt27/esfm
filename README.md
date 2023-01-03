@@ -113,6 +113,7 @@ Currently, the following registers have been discovered:
 |     `0x408`     | Configuration register
 |     `0x501`     | Test register
 
+Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
 
 Each operator is composed of a block of 8 registers.  These are all ordered
 sequentially, from `0x000` to `0x23f`.  The index for any given operator
