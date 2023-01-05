@@ -173,7 +173,7 @@ Bit 7 (`TRM`) enables tremolo (amplitude LFO).
 
 This register is the same as `0x40`-`0x55` on OPL3.
 
-Bits 0-5 (`ATTENUATION`) set the output level (inverted).
+Bits 0-5 (`ATTENUATION`) set the output level in steps of -0.75 dB.
 
 Bits 7-6 (`KSL`) scales the output level by pitch.  Note that the bit order is
 reversed.
@@ -232,8 +232,19 @@ both the envelope and phase generators.
 Bit 0 (`?`) does not appear to serve any purpose.
 
 Bits 1-3 (`MOD`) determines how much this operator is modulated by the operator
-before it.  On the first operator of each channel, this field sets the feedback
-level.
+before it, in steps of 6 dB.  On the first operator of each channel, this field
+sets the feedback level.
+
+| `MOD` | Modulator input
+| -----:| ---------------:
+|     0 |           -∞ dB
+|     1 |          -36 dB
+|     2 |          -30 dB
+|     3 |          -24 dB
+|     4 |          -18 dB
+|     5 |          -12 dB
+|     6 |           -6 dB
+|     7 |            0 dB
 
 Bits 4 and 5 (`L`/`R`) enable output to the left and right speaker channels,
 respectively.  Both these bits are set on power-on.
@@ -258,8 +269,19 @@ even when the 3rd operator itself has no envelope set.
 |       2 | Top cymbal?
 |       3 | Hihat?
 
-Bits 5-7 (`OUT`) set the direct speaker output level for this operator.  How
-this value corresponds with decibel levels is currently unknown.
+Bits 5-7 (`OUT`) set the direct speaker output level for this operator, in
+steps of 6 dB.
+
+| `OUT` | Output level
+| -----:| ------------:
+|     0 |        -∞ dB
+|     1 |       -36 dB
+|     2 |       -30 dB
+|     3 |       -24 dB
+|     4 |       -18 dB
+|     5 |       -12 dB
+|     6 |        -6 dB
+|     7 |         0 dB
 
 ### Key-on register
 
