@@ -262,12 +262,12 @@ only have any effect on the 4th operator in a channel.  When bit 4 is set, the
 frequency setting of the 3rd operator also affects sound produced by the 4th,
 even when the 3rd operator itself has no envelope set.
 
-| `NOISE` | Sound type
-| -------:|:----------
-|       0 | Normal
-|       1 | Snare drum?
-|       2 | Top cymbal?
-|       3 | Hihat?
+| `NOISE` | OPL3 rhythm-mode sound
+| -------:|:----------------------
+|       0 | Melodic
+|       1 | Snare drum
+|       2 | Hihat
+|       3 | Top cymbal
 
 Bits 5-7 (`OUT`) set the direct speaker output level for this operator, in
 steps of 6 dB.
