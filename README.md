@@ -290,8 +290,17 @@ steps of 6 dB.
 The key-on bits for each channel are in separate registers, from `0x240` to
 `0x253`.  The last two channels use two key-on registers each, so that the
 envelope generators for each pair of operators can be triggered individually.
-It is not known if it is possible to configure the modulation level on the
-third operator as feedback, to produce a true 2-op mode.
+These should not be considered four independent 2-op channels, however.  The
+third operator still receives modulation input from the second, and it does not
+appear to be possible to reconfigure this as feedback.
+
+|      Index      | Channel
+|:---------------:|:----------------
+| `0x240`-`0x24f` | 0 - 15
+|     `0x250`     | 16, operator 0-1
+|     `0x251`     | 16, operator 2-3
+|     `0x252`     | 17, operator 0-1
+|     `0x253`     | 17, operator 2-3
 
 On each of these registers:
 
