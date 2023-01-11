@@ -115,20 +115,6 @@ Currently, the following registers have been discovered:
 
 Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
 
-Each operator is composed of a block of 8 registers.  These are all ordered
-sequentially, from `0x000` to `0x23f`.  The index for any given operator
-register is calculated as follows:
-
-```
-    index = 32 * channel + 8 * operator + register
-```
-
-The key-on bits for each channel are in separate registers, from `0x240` to
-`0x253`.  The last two channels use two key-on registers each, so that the
-envelope generators for each pair of operators can be triggered individually.
-It is not known if it is possible to configure the modulation level on the
-third operator as feedback, to produce a true 2-op mode.
-
 ### Operator registers
 
 ```
@@ -151,6 +137,14 @@ third operator as feedback, to produce a true 2-op mode.
     ╟───────╫───────┴───────┴───────┼───────┴───────┬───────────────┴───────╢
     ║   7   ║          OUT          │     NOISE     │          WAVE         ║
     ╚═══════╩═══════════════════════╧═══════════════╧═══════════════════════╝
+```
+
+Each operator is composed of a block of 8 registers.  These are all ordered
+sequentially, from `0x000` to `0x23f`.  The index for any given operator
+register is calculated as follows:
+
+```
+    index = 32 * channel + 8 * operator + register
 ```
 
 #### Operator register 0
@@ -293,8 +287,18 @@ steps of 6 dB.
     ╚═══════╩═══════════════════════════════════════════════╧═══════╧═══════╝
 ```
 
-On each of these registers, bit 0 (`KEY`) enables the envelope generator for
-the associated channel.  Bit 1 does stick, but its purpose is unknown.
+The key-on bits for each channel are in separate registers, from `0x240` to
+`0x253`.  The last two channels use two key-on registers each, so that the
+envelope generators for each pair of operators can be triggered individually.
+It is not known if it is possible to configure the modulation level on the
+third operator as feedback, to produce a true 2-op mode.
+
+On each of these registers:
+
+Bit 0 (`KEY`) triggers key-on for the associated channel, starting the envelope
+generator and resetting the signal phase.
+
+Bit 1 (`?`) is writable, but its purpose is unknown.
 
 ### Timer registers
 
