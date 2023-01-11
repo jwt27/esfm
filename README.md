@@ -260,7 +260,7 @@ even when the 3rd operator itself has no envelope set.
 | -------:|:----------------------
 |       0 | Melodic
 |       1 | Snare drum
-|       2 | Hihat
+|       2 | Hi-hat
 |       3 | Top cymbal
 
 Bits 5-7 (`OUT`) set the direct speaker output level for this operator, in
