@@ -208,7 +208,8 @@ which is calculated as:
 ```
 
 Bits 5-7 (`DELAY`), when non-zero, add a delay of `2**(DELAY + 8)` samples to
-both the envelope and phase generators.
+the key-on trigger, delaying both the envelope and phase generators.  Key-off
+is not affected.
 
 | `DELAY` | Samples | Milliseconds
 | -------:| -------:| ------------:
