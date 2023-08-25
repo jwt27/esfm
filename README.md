@@ -139,6 +139,18 @@ Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
     ╚═══════╩═══════════════════════╧═══════════════╧═══════════════════════╝
 ```
 
+*Note: FNUM and BLOCK regions apply when **Fixed Pitch** mode is enabled. Where the operator is not in Fixed Pitch mode, the following alterations apply:*
+
+```
+    ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
+    ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
+    ╠═══════╬═══════╧═══════╧═══════╧═══════╧═══════╧═══════╪═══════╧═══════╣
+    ║   4   ║               FINE TUNE (SIGNED)              │   C.TUNE 0-1  ║
+    ╟───────╫───────────────────────┬───────────────────────┘               ║
+    ║   5   ║         DELAY         │        COARSE TUNE (SIGNED) 2-6       ║
+    ╚═══════╩═══════════════════════╧═══════════════════════════════════════╝
+```
+
 Each operator is composed of a block of 8 registers.  These are all ordered
 sequentially, from `0x000` to `0x23f`.  The index for any given operator
 register is calculated as follows:
