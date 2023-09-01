@@ -193,7 +193,8 @@ Bits 4-7 (`SUSTAIN`) set the envelope sustain level (inverted).
 On the OPL3, this is a per-channel register in `0xa0`-`0xa8`, instead of
 per-operator.
 
-Bits 0-7 (`FNUM 0-7`) are the low 8 bits of the frequency number.
+Bits 0-7 (`FNUM 0-7`) are the low 8 bits of the frequency number.  Bit 0 is
+ignored when `BLOCK` is set to 0.
 
 #### Operator register 5
 
