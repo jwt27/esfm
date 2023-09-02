@@ -375,7 +375,7 @@ from how it is actually implemented on the OPL3.
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
     ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
     ╠═══════╬═══════╪═══════╪═══════╪═══════╪═══════╧═══════╪═══════╪═══════╣
-    ║ 0x501 ║   ?   │   X   │   ?   │   X   │       ?       │   X   │   ?   ║
+    ║ 0x501 ║   ?   │   !   │   !   │   !   │       ?       │   !   │   !   ║
     ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
 ```
 
@@ -388,3 +388,6 @@ Bit 4 reduces the output level by about -3dB.
 Bit 6 disables sound output.
 
 Setting bits 1 and 6 together produces a loud popping noise.
+
+Bits 0 and 5 are swapped - writing `0x01` will set `0x20`, and vice-versa.
+Other than that, they have no apparent effect.
