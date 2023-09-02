@@ -375,19 +375,21 @@ from how it is actually implemented on the OPL3.
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
     ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
     ╠═══════╬═══════╪═══════╪═══════╪═══════╪═══════╧═══════╪═══════╪═══════╣
-    ║ 0x501 ║   ?   │   !   │   !   │   !   │       ?       │   !   │   !   ║
+    ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
     ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
 ```
 
 #### Test register `0x501`
 
+Bit 0 (`EGX`) pauses all envelope generators.
+
 Bit 1 produces a severely distorted sound.
 
 Bit 4 reduces the output level by about -3dB.
 
-Bit 6 disables sound output.
+Bit 6 (`PGX`) stops and resets all phase generators.
 
 Setting bits 1 and 6 together produces a loud popping noise.
 
-Bits 0 and 5 are swapped - writing `0x01` will set `0x20`, and vice-versa.
-Other than that, they have no apparent effect.
+Bits 0 and 5 are swapped - writing `0x01` will read back as `0x20`, and
+vice-versa.
