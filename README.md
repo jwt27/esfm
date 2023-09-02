@@ -111,6 +111,7 @@ Currently, the following registers have been discovered:
 | `0x240`-`0x253` | Key-on registers
 | `0x402`-`0x404` | Timer registers
 |     `0x408`     | Configuration register
+|     `0x4bd`     | Compatibility register
 |     `0x501`     | Test register
 
 Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
@@ -352,32 +353,31 @@ the status port.
 Bit 7 (`RST`) resets all timer flags in the status port.  This bit does not
 stick.
 
-### Configuration registers
+### Miscellaneous registers
 
 ```
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
     ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
     ╠═══════╬═══════╪═══════╪═══════╧═══════╧═══════╧═══════╧═══════╧═══════╣
     ║ 0x408 ║   ?   │  NTS  │                       ?                       ║
-    ╚═══════╩═══════╧═══════╧═══════════════════════════════════════════════╝
+    ╟───────╫───────┴───────┴───────────────────────────────────────────────╢
+    ║ 0x4bd ║                              ...                              ║
+    ╟───────╫───────┬───────┬───────┬───────┬───────────────┬───────┬───────╢
+    ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
+    ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
 ```
 
 #### Configuration register `0x408`
 
 Bit 6 (`NTS`) determines how envelope rate scaling is calculated.  When set,
-`FNUM` bit 9 is used.  When clear, `FNUM` bit 8 is used.
-Note: this matches the description in the OPL3 datasheet, but is *inverted*
+`FNUM` bit 9 is used.  When clear, `FNUM` bit 8 is used.  
+**Note:** this matches the description in the OPL3 datasheet, but is *inverted*
 from how it is actually implemented on the OPL3.
 
-### Test registers
+#### Compatibility register `0x4bd`
 
-```
-    ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
-    ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
-    ╠═══════╬═══════╪═══════╪═══════╪═══════╪═══════╧═══════╪═══════╪═══════╣
-    ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
-    ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
-```
+This register reflects the state of OPL3 register `0xbd` in compatibility mode.
+In native mode, all bits can be written, but have no apparent effect.
 
 #### Test register `0x501`
 
