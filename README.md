@@ -113,6 +113,7 @@ Currently, the following registers have been discovered:
 |     `0x408`     | Configuration register
 |     `0x4bd`     | Compatibility register
 |     `0x501`     | Test register
+|     `0x505`     | Compatibility register
 
 Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
 
@@ -364,7 +365,9 @@ stick.
     ║ 0x4bd ║                              ...                              ║
     ╟───────╫───────┬───────┬───────┬───────┬───────────────┬───────┬───────╢
     ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
-    ╚═══════╩═══════╧═══════╧═══════╧═══════╧═══════════════╧═══════╧═══════╝
+    ╟───────╫───────┼───────┴───────┴───────┴───────────────┴───────┴───────╢
+    ║ 0x505 ║   1   │                           0                           ║
+    ╚═══════╩═══════╧═══════════════════════════════════════════════════════╝
 ```
 
 #### Configuration register `0x408`
@@ -393,3 +396,9 @@ Setting bits 1 and 6 together produces a loud popping noise.
 
 Bits 0 and 5 are swapped - writing `0x01` will read back as `0x20`, and
 vice-versa.
+
+#### Compatibility register `0x505`
+
+This register presumably reflects the state of OPL3 register `0x105` in
+compatibility mode.  In native mode, this is not writable, and always reads
+`0x80`.
