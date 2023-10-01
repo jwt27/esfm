@@ -113,6 +113,7 @@ Currently, the following registers have been discovered:
 |     `0x408`     | Configuration register
 |     `0x4bd`     | Compatibility register
 |     `0x501`     | Test register
+|     `0x504`     | Compatibility register
 |     `0x505`     | Compatibility register
 
 Registers in the range `0x400`-`0x5ff` are duplicated in `0x600`-`0x7ff`.
