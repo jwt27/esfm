@@ -360,12 +360,14 @@ stick.
     ╔═══════╦═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╤═══════╗
     ║ R↓ B→ ║   7   │   6   │   5   │   4   │   3   │   2   │   1   │   0   ║
     ╠═══════╬═══════╪═══════╪═══════╧═══════╧═══════╧═══════╧═══════╧═══════╣
-    ║ 0x408 ║   ?   │  NTS  │                       ?                       ║
+    ║ 0x408 ║   0   │  NTS  │                       0                       ║
     ╟───────╫───────┴───────┴───────────────────────────────────────────────╢
     ║ 0x4bd ║                              ...                              ║
     ╟───────╫───────┬───────┬───────┬───────┬───────────────┬───────┬───────╢
     ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
-    ╟───────╫───────┼───────┴───────┴───────┴───────────────┴───────┴───────╢
+    ╟───────╫───────┴───────┼───────┴───────┴───────────────┴───────┴───────╢
+    ║ 0x504 ║       0       │                      ...                      ║
+    ╟───────╫───────┬───────┴───────────────────────────────────────────────╢
     ║ 0x505 ║   1   │                           0                           ║
     ╚═══════╩═══════╧═══════════════════════════════════════════════════════╝
 ```
@@ -379,7 +381,7 @@ from how it is actually implemented on the OPL3.
 
 #### Compatibility register `0x4bd`
 
-This register reflects the state of OPL3 register `0xbd` in compatibility mode.
+This register reflects the state of OPL register `0xbd` in compatibility mode.
 In native mode, all bits can be written, but have no apparent effect.
 
 #### Test register `0x501`
@@ -396,6 +398,11 @@ Setting bits 1 and 6 together produces a loud popping noise.
 
 Bits 0 and 5 are swapped - writing `0x01` will read back as `0x20`, and
 vice-versa.
+
+#### Compatibility register `0x504`
+
+This register reflects the state of OPL3 register `0x104` in compatibility
+mode.  In native mode, bits 0-5 can be written, but have no apparent effect.
 
 #### Compatibility register `0x505`
 
