@@ -367,9 +367,9 @@ stick.
     ║ 0x501 ║   ?   │  PGX  │   !   │   !   │       ?       │   !   │  EGX  ║
     ╟───────╫───────┴───────┼───────┴───────┴───────────────┴───────┴───────╢
     ║ 0x504 ║       0       │                      ...                      ║
-    ╟───────╫───────┬───────┴───────────────────────────────────────────────╢
-    ║ 0x505 ║   1   │                           0                           ║
-    ╚═══════╩═══════╧═══════════════════════════════════════════════════════╝
+    ╟───────╫───────┬───────┴───────────────────────────────────────┬───────╢
+    ║ 0x505 ║   1   │                       0                       │   ?   ║
+    ╚═══════╩═══════╧═══════════════════════════════════════════════╧═══════╝
 ```
 
 #### Configuration register `0x408`
@@ -406,6 +406,10 @@ mode.  In native mode, bits 0-5 can be written, but have no apparent effect.
 
 #### Compatibility register `0x505`
 
-This register presumably reflects the state of OPL3 register `0x105` in
-compatibility mode.  In native mode, this is not writable, and always reads
-`0x80`.
+This register reflects the state of OPL3 register `0x105` in compatibility
+mode.  In native mode, this not writable.
+
+Bit 0 can be set by writing `0x81` during initialization, but has no known
+effect in native mode.
+
+Bit 7 is always set.
